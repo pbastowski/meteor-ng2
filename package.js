@@ -1,6 +1,6 @@
 Package.describe({
-    name: 'pbastowski:angular2',
-    version: '0.0.1',
+    name: 'xpbastowski:angular2',
+    version: '0.0.3',
     summary: 'A simple implementation of Angular2',
     git: '',
     documentation: 'README.md'
@@ -14,20 +14,17 @@ Npm.depends({
 });
 
 Package.registerBuildPlugin({
-  name: 'typescript',
+  name: 'html-templates',
   sources : [
     'plugin/html-templates.js'
-  ],
-  npmDependencies : {
-    'typescript' : '1.7.5'
-  }
+  ]
 });
 
 Package.onUse(function (api) {
     api.versionsFrom('1.2.1');
     api.use('isobuild:compiler-plugin@1.0.0');
     //api.use('ecmascript');
-    api.use('pbastowski:systemjs', {weak:true});
+    api.use('pbastowski:systemjs@0.0.1', {weak:true});
     api.addFiles([
             '.npm/package/node_modules/es6-shim/es6-shim.min.js',
             '.npm/package/node_modules/angular2/bundles/angular2-polyfills.min.js',
