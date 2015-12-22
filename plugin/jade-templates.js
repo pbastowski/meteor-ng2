@@ -31,18 +31,23 @@ function compile(file) {
     var path = moduleName + '.jade.js';
     var output = content;
 
-    output = jade.compile(content, jadeOpts)();
+    try {
+        output = jade.compile(content, jadeOpts)();
 
-    output = minify(output.replace(/'/g, "\\'"), {
-        collapseWhitespace : true,
-        conservativeCollapse : true,
-        removeComments : true,
-        minifyJS : true,
-        minifyCSS: true,
-        processScripts : ['text/ng-template']
-      });
+        output = minify(output.replace(/'/g, "\\'"), {
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            removeComments: true,
+            minifyJS: true,
+            minifyCSS: true,
+            processScripts: ['text/ng-template']
+        });
 
-    output = buildTemplate(output, moduleName);
+        output = buildTemplate(output, moduleName);
+
+    } catch (er) {
+        file.error({ message: er});
+    }
 
     file.addJavaScript({
         path: path,

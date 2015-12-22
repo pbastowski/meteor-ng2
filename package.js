@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pbastowski:angular2',
-    version: '0.0.4',
+    version: '0.0.5',
     summary: 'A simple implementation of Angular2 for Meteor',
     git: 'https://github.com/pbastowski/meteor-ng2',
     documentation: 'README.md'
