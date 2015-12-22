@@ -14,7 +14,16 @@ The modules below are already imported into your app, so, don't include them aga
 
 **Note:** This is the first version of this repo, so, please tread carefully!
 
-## TypeScript is required
+## Installation
+
+    meteor add pbastowski:systemjs
+    meteor add pbastowski:typescript
+
+    meteor add pbastowski:angular2
+
+SystemJS and TypeScript are required in addition to Angular2.
+
+## Why TypeScript and not Babel?
 
 This package only works with TypeScript, because with TypeScript injecting dependencies is very easy, as shown below
 
@@ -25,13 +34,11 @@ class MyComponent {
 }
 ```
 
-The `: MyService` type annotation, above, is all you will need to inject the `MyService` service into your component's constructor. So, make it easy for yourself and do this:
+The `: MyService` type annotation, above, is all you will need to inject the `MyService` service into your component's constructor.
 
-    meteor add pbastowski:typescript
+TypeScript can, for the most part, be used as a drop-in replacement for Babel. You will have to rename your `.js` files to `.ts`. Other than that, all ES6 and some ES7 features will be available to you - for what works see the official [TypeScript Handbook](http://www.typescriptlang.org/Handbook) page.
 
-TypeScript can, for the most part, be used as a drop-in replacement for Babel. You will have to rename your `.js` files to `.ts`. Other than that, most ES6 and some ES7 features will be available to you - for what works see the official [TypeScript](http://www.typescriptlang.org/Handbook) support page.
-
-**Note**: If you know how to do this easily with Babel then I will add support for Babel also.
+**Note**: If you know how to do this easily with Babel then let me know and I will add support for Babel also.
 
 
 ## Templates

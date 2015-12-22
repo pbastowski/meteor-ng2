@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'xpbastowski:angular2',
+    name: 'pbastowski:angular2',
     version: '0.0.3',
     summary: 'A simple implementation of Angular2',
     git: '',
