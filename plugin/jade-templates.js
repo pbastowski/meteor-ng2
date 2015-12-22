@@ -1,8 +1,8 @@
-var minify = Npm.require('html-minifier').minify;
 var jade = Npm.require('jade');
 
 var config = {};
-var jadeOpts = {pretty:true, compileDebug:false};
+//var jadeOpts = {pretty:true, compileDebug:false};
+var jadeOpts = { compileDebug:false };
 
 Plugin.registerCompiler({
     extensions: ['jade'],
@@ -33,16 +33,6 @@ function compile(file) {
 
     try {
         output = jade.compile(content, jadeOpts)();
-
-        output = minify(output.replace(/'/g, "\\'"), {
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            removeComments: true,
-            minifyJS: true,
-            minifyCSS: true,
-            processScripts: ['text/ng-template']
-        });
-
         output = buildTemplate(output, moduleName);
 
     } catch (er) {
