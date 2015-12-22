@@ -43,7 +43,7 @@ TypeScript can, for the most part, be used as a drop-in replacement for Babel. Y
 
 ## Templates
 
-Files with the `.ng.html` extension will be "templatized". This means that they will be wrapped in a SystemJS module, which you will be able to import into your app as required.
+HTML files with the `.ng.html` extension and JADE files with the `.jade` extension will be "templatized". This means that they will be wrapped in a SystemJS module, which you will be able to import into your app as required.
 
 So, if you have an HTML file like this:
 
@@ -53,7 +53,15 @@ So, if you have an HTML file like this:
 <h1>Welcome to Angular2 Meteor!</h1>
 ```
 
-You can import the HTML into your app and use it like this:
+or a JADE file like this:
+
+**client/app.jade**
+
+```jade
+h1 Welcome to Angular2 Meteor!
+```
+
+It will be converted to a SystemJS module with the name `client/app.html`. You can then import the HTML text directly into your app and use it like this:
 
 **client/app.ts**
 
@@ -74,9 +82,9 @@ export class Welcome {
 
 Starting your app is a two step process
 
-1) Import your main file from **index.html** using `System.import()`
+1. Import your main file from **index.html** using `System.import()`
 
-2) Bootstrap Angular2 with your main component
+2. Bootstrap Angular2 with your main component
 
 **index.html**
 

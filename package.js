@@ -1,7 +1,7 @@
 Package.describe({
     name: 'pbastowski:angular2',
-    version: '0.0.3',
-    summary: 'A simple implementation of Angular2',
+    version: '0.0.4',
+    summary: 'A simple implementation of Angular2 for Meteor',
     git: 'https://github.com/pbastowski/meteor-ng2',
     documentation: 'README.md'
 });
@@ -14,17 +14,28 @@ Npm.depends({
 });
 
 Package.registerBuildPlugin({
-  name: 'html-templates',
-  sources : [
-    'plugin/html-templates.js'
-  ]
+    name: 'html-templates',
+    sources: [
+        'plugin/html-templates.js'
+    ]
+});
+
+Package.registerBuildPlugin({
+  name: "jade-templates",
+  sources: [
+    'plugin/jade-templates.js'
+  ],
+  npmDependencies : {
+    'html-minifier': '1.0.0',
+    'jade': '1.11.0'
+  }
 });
 
 Package.onUse(function (api) {
     api.versionsFrom('1.2.1');
     api.use('isobuild:compiler-plugin@1.0.0');
     //api.use('ecmascript');
-    api.use('pbastowski:systemjs@0.0.1', {weak:true});
+    api.use('pbastowski:systemjs@0.0.1', {weak: true});
     api.addFiles([
             '.npm/package/node_modules/es6-shim/es6-shim.min.js',
             '.npm/package/node_modules/angular2/bundles/angular2-polyfills.min.js',
@@ -33,7 +44,7 @@ Package.onUse(function (api) {
             '.npm/package/node_modules/angular2/bundles/angular2.dev.js',
             '.npm/package/node_modules/angular2/bundles/router.dev.js'
         ]
-        ,'client',
+        , 'client',
         {transpile: false}
     );
 });
