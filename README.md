@@ -12,7 +12,11 @@ The modules below are already imported into your app, so, don't include them aga
     angular2/bundles/router.dev.j
 
 
-**Note:** This is the first version of this repo, so, please tread carefully!
+**Notes:**
+
+1. This is an early version of this package, so, please tread carefully!
+2. This is not the excellent `angular-meteor` package. You can find it [here](https://github.com/Urigo/angular-meteor).
+
 
 ## Installation
 
@@ -112,3 +116,6 @@ import { Welcome } from 'client/app';
 bootstrap( Welcome );
 ```
 
+## Prior Art
+
+Portions of the template compiler code were adapted from the excellent [Aurelia-Meteor](https://github.com/ahmedshuhel/aurelia-meteor/blob/master/plugin/template-handler.js) repo.
