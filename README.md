@@ -11,6 +11,7 @@ The modules below are already imported into your app, so, don't include them aga
     angular2/bundles/angular2.dev.js
     angular2/bundles/router.dev.j
 
+> Breaking change in 0.0.7: Do NOT install `pbastowski:typescript`. Remove it, if you already have it installed.
 
 **Notes:**
 
