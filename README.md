@@ -21,15 +21,13 @@ The modules below are already imported into your app, so, don't include them aga
 ## Installation
 
     meteor add pbastowski:systemjs
-    meteor add pbastowski:typescript
-
     meteor add pbastowski:angular2
 
-SystemJS and TypeScript are required in addition to Angular2.
+SystemJS is required in addition to Angular2.
 
-## Why TypeScript and not Babel?
+## TypeScript
 
-This package only works with TypeScript, because with TypeScript injecting dependencies is very easy, as shown below
+TypeScript is included with this package. With TypeScript injecting dependencies is very easy, as shown below
 
 ```javascript
 class MyComponent {
@@ -42,12 +40,23 @@ The `: MyService` type annotation, above, is all you will need to inject the `My
 
 TypeScript can, for the most part, be used as a drop-in replacement for Babel. You will have to rename your `.js` files to `.ts`. Other than that, all ES6 and some ES7 features will be available to you - for what works see the official [TypeScript Handbook](http://www.typescriptlang.org/Handbook) page.
 
-**Note**: If you know how to do this easily with Babel then let me know and I will add support for Babel also.
-
 
 ## Templates
 
-HTML files with the `.ng.html` extension and JADE files with the `.jade` extension will be "templatized". This means that they will be wrapped in a SystemJS module, which you will be able to import into your app as required.
+Inline templates, both HTML and JADE, are supported out of the box as shown below. The JADE inline-templates depend on the built-in TypeScript package, so, if you override it you loose them.
+
+```javascript
+@Component({
+    selector: 'my-app',
+    template: `<h2>This is my app</h2>`,    // HTML inline template
+
+    template: jade`h2 This is my app`       // JADE inline template
+})
+```
+
+### Template files
+
+HTML files with the `.ng.html` extension and JADE files with the `.jade` extension will be "templetized". This means that they will be wrapped in a SystemJS module, which you will be able to `import`` into your app as required.
 
 So, if you have an HTML file like this:
 
