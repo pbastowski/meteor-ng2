@@ -5,7 +5,7 @@ var config = {};
 var jadeOpts = { compileDebug:false };
 
 Plugin.registerCompiler({
-    extensions: ['jade'],
+    extensions: ['jade', '.ng.jade'],
     filenames:  []
 
 }, function () {

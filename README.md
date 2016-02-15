@@ -1,34 +1,33 @@
 # A simple implementation of Angular2 for Meteor
 
-This package implements Angular2 beta without any additional trimmings.
+This package implements Angular2 beta and also includes SystemJS and TypeScript on both client and server side.
 
-The modules below are already imported into your app, so, don't include them again through `<script>` tags.
+The Angular 2 modules listed below are already imported into your app. So, there is no need to include them again through `<script>` tags.
 
     es6-shim/es6-shim.min.js
     angular2/bundles/angular2-polyfills.min.js
-    reflect-metadata/Reflect.js
     rxjs/bundles/Rx.js
-    angular2/bundles/angular2.dev.js
-    angular2/bundles/router.dev.j
+    angular2/bundles/angular2.js
+    angular2/bundles/router.js
 
-> Breaking change in 0.0.7: Do NOT install `pbastowski:typescript`. Remove it, if you already have it installed.
+> Breaking change in 0.1.0: Do NOT install `pbastowski:systemjs` or `pbastowski:typescript`. Remove them from the project, if you already have them there.
 
 **Notes:**
 
 1. This is an early version of this package, so, please tread carefully!
-2. This is not the excellent `angular-meteor` package. You can find it [here](https://github.com/Urigo/angular-meteor).
+2. Are you looking for `angular-meteor`? You can find it [here](https://github.com/Urigo/angular-meteor).
 
 
 ## Installation
 
-    meteor add pbastowski:systemjs
     meteor add pbastowski:angular2
 
-SystemJS is required in addition to Angular2.
+SystemJS and TypeScript support is also included in this package, on both client and server sides.
 
 ## TypeScript
 
-TypeScript is included with this package. With TypeScript injecting dependencies is very easy, as shown below
+### Dependency Injection
+TypeScript is included with this package. With TypeScript, injecting dependencies is very easy, as shown below
 
 ```javascript
 class MyComponent {
@@ -39,12 +38,29 @@ class MyComponent {
 
 The `: MyService` type annotation, above, is all you will need to inject the `MyService` service into your component's constructor.
 
-TypeScript can, for the most part, be used as a drop-in replacement for Babel. You will have to rename your `.js` files to `.ts`. Other than that, all ES6 and some ES7 features will be available to you - for what works see the official [TypeScript Handbook](http://www.typescriptlang.org/Handbook) page.
+### SystemJS integration
+
+TypeScript, as configured in this package, generates SystemJS modules on both the client and the server sides. Hence the need for SystemJS, so, it's bundled.
+
+Modules names are registered with SystemJS based on their physical location in the project. Below are some examples.
+
+ file | how to import
+ -----| -------------
+ abc.ts| import "abc"
+ client/app.ts| import "client/app"
+ server/get_mail.ts| import "server/get_mail"
+
+ *Please note that relative imports, those with "../" or "./" in the path, are not supported!*
+
+
+### TS used as Babel replacement
+
+TypeScript can, for the most part, be used as a drop-in replacement for Babel. Especially so, if you are happy to ignore type checking. You will have to rename your `.js` files to `.ts`. Other than that, all ES6 and some ES7 features will be available to you - for what works see the official [TypeScript Handbook](http://www.typescriptlang.org/Handbook) page.
 
 
 ## Templates
 
-Inline templates, both HTML and JADE, are supported out of the box as shown below. The JADE inline-templates depend on the built-in TypeScript package, so, if you override it you loose them.
+Inline templates, both HTML and JADE, are supported out of the box, as shown below. JADE inline-templates are implemented in the TypeScript compiler Meteor plugin.
 
 ```javascript
 @Component({
@@ -80,15 +96,15 @@ It will be converted to a SystemJS module with the name `client/app.html`. You c
 **client/app.ts**
 
 ```javascript
-import tplWelcome from 'client/app.html';
+import tplApp from 'client/app.html';
 
 import { Component } from 'angular2/core';
 
 @Component({
-    selector: 'welcome',
-    template: tplWelcome
+    selector: 'app',
+    template: tplApp
 })
-export class Welcome {
+export class App {
 }
 ```
 
@@ -96,7 +112,7 @@ export class Welcome {
 
 Starting your app is a two step process
 
-1. Import your main file from **index.html** using `System.import()`
+1. In **index.html** Import your main JS file using `System.import()`
 
 2. Bootstrap Angular2 with your main component
 
@@ -105,7 +121,7 @@ Starting your app is a two step process
 ```html
 <body>
 
-<welcome></welcome>
+<app></app>
 
 <script>
     System.import('client/index');
@@ -121,11 +137,27 @@ The bootstrap process must be done from a "main" module, such as `index.ts`, bel
 ```javascript
 import { bootstrap } from 'angular2/platform/browser';
 
-import { Welcome } from 'client/app';
+import { App } from 'client/app';
 
-bootstrap( Welcome );
+bootstrap( App );
 ```
+
+## Server Side
+
+On the server side you can also write your modules with TypeScript and import/export as per the client side. Each file (module) will be registered with SystemJS in the same fashion as described above.
 
 ## Prior Art
 
 Portions of the template compiler code were adapted from the excellent [Aurelia-Meteor](https://github.com/ahmedshuhel/aurelia-meteor/blob/master/plugin/template-handler.js) repo.
+
+## Changelog
+
+### v0.1.0
+
+- new: added server-side SystemJS support
+- new: files with the extension `.ng.jade` are now also recognised as JADE templates (in addition to `.jade`)
+- update: updated angular2 to beta6
+- update: updated systemjs to 0.19.20
+- update: updated typescript to 1.9.0-dev.20160214
+- breaking change: SystemJS is now bundled with this package, so, remove it from your project if it's already there
+

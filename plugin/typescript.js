@@ -60,11 +60,17 @@ function processFile(file) {
         var options = merge({}, COMPILER_OPTIONS);
 
         // On the server do not create modules. Just transpile the code as is.
-        if (file._resourceSlot.packageSourceBatch.unibuild.arch === 'os') {
-            options.module = typescript.ModuleKind.CommonJS;
-        } else {
-            options.module = COMPILER_OPTIONS.module;
-        }
+        //if (file._resourceSlot.packageSourceBatch.unibuild.arch === 'os'
+        //    && /main\.[tj]s/i.test(inputFile) ) {
+        //    options.module = typescript.ModuleKind.CommonJS;
+        //} else {
+        //    options.module = COMPILER_OPTIONS.module;
+        //}
+        //if (file._resourceSlot.packageSourceBatch.unibuild.arch === 'os') {
+        //    options.module = typescript.ModuleKind.CommonJS;
+        //} else {
+        //    options.module = COMPILER_OPTIONS.module;
+        //}
 
         // Compile code
         try {
