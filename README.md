@@ -146,6 +146,16 @@ bootstrap( App );
 
 On the server side you can also write your modules with TypeScript and import/export as per the client side. Each file (module) will be registered with SystemJS in the same fashion as described above.
 
+To kick off your server-side JS, you need to first create a `server/main.js` file. It must have the `.js` extension, otherwise the following process won't work.
+
+Next, Add the code below to `server/main.ts`
+
+```js
+System.import('server/your_main_file')
+```
+
+And finally, change `your_main_file`, in the example above, to whatever TS file imports all your other modules. This is synonymous to the `index.ts` file for the client side. You could even call it `index.ts`.
+
 ## Prior Art
 
 Portions of the template compiler code were adapted from the excellent [Aurelia-Meteor](https://github.com/ahmedshuhel/aurelia-meteor/blob/master/plugin/template-handler.js) repo.
