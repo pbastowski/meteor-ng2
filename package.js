@@ -1,14 +1,14 @@
 Package.describe({
     name: 'pbastowski:angular2',
-    version: '0.1.0',
+    version: '0.1.1',
     summary: 'A simple implementation of Angular2 for Meteor',
     git: 'https://github.com/pbastowski/meteor-ng2',
     documentation: 'README.md'
 });
 
 Npm.depends({
-    'angular2': '2.0.0-beta.6',
-    'systemjs': '0.19.20'
+    'angular2': '2.0.0-beta.9',
+    'systemjs': '0.19.24'
 });
 
 Package.registerBuildPlugin({
@@ -34,7 +34,7 @@ Package.registerBuildPlugin({
         'plugin/typescript.js'
     ],
     npmDependencies: {
-        'typescript': '1.9.0-dev.20160214',
+        'typescript': '1.9.0-dev.20160313',
         'jade': '1.11.0'
     }
 });

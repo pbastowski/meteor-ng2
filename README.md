@@ -162,6 +162,12 @@ Portions of the template compiler code were adapted from the excellent [Aurelia-
 
 ## Changelog
 
+### v0.1.1
+
+- update: updated angular2 to beta9
+- update: updated systemjs to 0.19.24
+- update: updated typescript to 1.9.0-dev.20160313
+
 ### v0.1.0
 
 - new: added server-side SystemJS support
